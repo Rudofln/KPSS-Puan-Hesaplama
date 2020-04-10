@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr" ng-app="calculate">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+  
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="kpss.js"></script>  
+    <title>Hello, world!</title>
+  </head>
+  <body ng-controller="Ctrl">
+
+        <div class="container">
+          <div class="row">
+              <div class="col-12">
+                <h1>KPSS Puan Hesaplama</h1>
+              </div>
+
+              <div class="col-12 col-sm-12">
+                <button class="tablinks" onclick="openCity(event, 'bir')" id="defaultOpen">ORTAÖĞRETİM</button>
+                <button class="tablinks" onclick="openCity(event, 'uc')">LİSANS</button>
+                <button class="tablinks" onclick="openCity(event, 'dort')">ÖABT</button>
+              </div>
+          </div>
+            <!-- one second -->
+            <div id="bir" class="tabcontent">
+              <div class="col-12 col-sm-12 col-xl-12">
+                    <div class="col-12">
+                      <div>KPSS ORTAÖĞRETİM <span>PUAN HESAPLAMA</span></div>
+                    </div>
+                    <table class="table">
+                      <tr class="kap-bor">
+                        <th></th>
+                        <th class="kap-bas">Genel Yetenek</th>
+                        <th class="kap-bas">Genel Kültür</th>
+                      </tr>
+                      <tr>
+                        <td class="bg-orange" width="32">Doğru Sayısı</td>
+                        <td><input type="number" class="form-control" ng-model="oogGenelYetenekDogru" ng-change="hesaplama()" tabindex="1"></td>
+                        <td><input type="number" class="form-control" ng-model="oogGenelKulturDogru" ng-change="hesaplama()" tabindex="3"></td>
+                      </tr>
+                      <tr>
+                        <td class="bg-orange">Yanlış Sayısı</td>
+                        <td><input type="number" class="form-control" ng-model="oogGenelYetenekYanlis" ng-change="hesaplama()" tabindex="2"></td>
+                        <td><input type="number" class="form-control" ng-model="oogGenelKulturYanlis" ng-change="hesaplama()" tabindex="4"></td>
+                      </tr>
+                      <tr>
+                        <td class="bg-orange">Net</td>
+                        <td>{{oogGenelYetenekNet}}</td>
+                        <td>{{oogGenelKulturNet}}</td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div class="col-12 col-sm-12 col-xl-12">
+                    <div class="col-12">
+                      <div>SONUÇ<span> TABLOSU</span></div>
+                    </div>
+                      <table class="table">
+                        <tr class="kap-bor">
+                          <th></th>
+                          <th class="kap-bas">Puan Türü</th>
+                          <th class="kap-bas">2018 Puanı</th>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td class="kap-tur">KPSS-P94</td>
+                          <td>{{kpssp94}}</td>
+                        </tr>
+                      </table>
+                  </div>
+              </div>
+            <!-- üc -->
+
+            <div id="uc" class="tabcontent">
+              <div class="col-12 col-sm-12 col-xl-12">
+              <div class="col-12">
+                <div>KPSS LİSANS <span>PUAN HESAPLAMA</span></div>
+              </div>
+              <table class="table">
+                <tr class="kap-bor">
+                  <th></th>
+                  <th class="kap-bas">Genel Yetenek</th>
+                  <th class="kap-bas">Genel Kültür</th>
+                </tr>
+                <tr>
+                  <td class="bg-orange">Doğru Sayısı</td>
+                  <td><input type="number" class="form-control" ng-model="oogGenelYetenekDogru" ng-change="hesaplama()" tabindex="1"></td>
+                  <td><input type="number" class="form-control" ng-model="oogGenelKulturDogru" ng-change="hesaplama()" tabindex="3"></td>
+                </tr>
+                <tr>
+                  <td class="bg-orange">Yanlış Sayısı</td>
+                  <td><input type="number" class="form-control" ng-model="oogGenelYetenekYanlis" ng-change="hesaplama()" tabindex="2"></td>
+                  <td><input type="number" class="form-control" ng-model="oogGenelKulturYanlis" ng-change="hesaplama()" tabindex="4"></td>
+                </tr>
+                <tr>
+                  <td class="bg-orange">Net</td>
+                  <td>{{oogGenelYetenekNet}}</td>
+                  <td>{{oogGenelKulturNet}}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="col-12 col-sm-12 col-xl-12">
+            <div class="col-12">
+              <div>SONUÇ<span> TABLOSU</span></div>
+            </div>
+            <table class="table">
+              <tr class="kap-bor">
+                <th></th>
+                <th class="kap-bas">Puan Türü</th>
+                <th class="kap-bas">2018 Puanı</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="kap-tur">KPSS-P3</td>
+                <td>{{kpssp3}}</td>
+              </tr>				
+            </table>
+          </div>
+        </div>
+
+        <!-- dort -->
+        <div id="dort" class="tabcontent">
+          <div class="col-12 col-sm-12 col-xl-12">
+            <div class="col-12">
+              <div>KPSS ÖABT <span>PUAN HESAPLAMA</span></div>
+            </div>
+            <table class="table">
+              <tr class="kap-bor">
+                <th></th>
+                <th class="kap-bas">Genel Yetenek</th>
+                <th class="kap-bas">Genel Kültür</th>
+                <th class="kap-bas">Egitim Bilimleri</th>
+                <th class="kap-sec">
+                  <select ng-model="selectedAlan" ng-change="hesaplama()" class="form-control" ng-options="x.alan for x in alanlar"  tabindex="7">
+                    <option value="">P121 için alan seçiniz</option>
+                  </select>
+                </th>
+              </tr>
+              <tr>
+                <td class="bg-orange">Doğru Sayısı</td>
+                <td><input type="number" class="form-control" ng-model="kpssaGenelYetenekDogru" ng-change="hesaplama()" tabindex="1"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaGenelKulturDogru" ng-change="hesaplama()" tabindex="3"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaEgitimDogru" ng-change="hesaplama()" tabindex="5"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaOabtDogru" ng-change="hesaplama()" tabindex="8"></td>
+              </tr>
+              <tr>
+                <td class="bg-orange">Yanlış Sayısı</td>
+                <td><input type="number" class="form-control" ng-model="kpssaGenelYetenekYanlis" ng-change="hesaplama()" tabindex="2"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaGenelKulturYanlis" ng-change="hesaplama()" tabindex="4"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaEgitimYanlis" ng-change="hesaplama()" tabindex="6"></td>
+                <td><input type="number" class="form-control" ng-model="kpssaOabtYanlis" ng-change="hesaplama()" tabindex="9"></td>
+              </tr>
+              <tr>
+                <td class="bg-orange">Net</td>
+                <td>{{kpssaGenelYetenekNet}}</td>
+                <td>{{kpssaGenelKulturNet}}</td>
+                <td>{{kpssaEgitimNet}}</td>
+                <td>{{kpssaOabtNet}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-12 col-sm-12 col-xl-12">
+            <div class="col-12">
+              <div>SONUÇ<span> TABLOSU</span></div>
+            </div>
+            <table class="table">
+              <tr class="kap-bor">
+                <th></th>
+                <th class="kap-bas">Puan Türü</th>
+                <th class="kap-bas">2018 Puanı</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="kap-tur">KPSS-P10</td>
+                <td>{{kpssp10}}</td>
+              </tr>
+              <td></td>
+              <td class="kap-tur">KPSS-P121</td>
+              <td>{{kpsspoabt}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div style="float: left;text-align: center;width: 100%;padding-top: 10px;font-weight: 100;">
+          Sitemizde yer alan hesaplama tabloları sadece bilgilendirme amaçlıdır, 
+          kesinleşmiş sonuç anlamına gelmemekte olup ispat hukuku açısından geçerliliği bulunmamaktadır. 
+          </div>
+
+        </div>      
+
+	<script src="http://www.fenmerkezi.com/wp-content/themes/nettema/js/sidebar.js"></script>	
+
+  </body>
+</html>
